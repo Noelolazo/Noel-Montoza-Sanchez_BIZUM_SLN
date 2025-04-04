@@ -1,0 +1,22 @@
+{
+  "ftp://noel@localhost": {
+    "html": {},
+    "mybizum.com": {},
+    "ws.mybizum.com": {},
+    "var": {
+      "www": {
+        "mybizum.com": {
+          "css": {
+            "styles.css": {
+              "type": "-",
+              "size": 1661,
+              "lmtime": 1742736698205.0547,
+              "modified": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "$version": 1
+}

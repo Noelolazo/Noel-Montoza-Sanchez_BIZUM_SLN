@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="/js/main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container" id="login-form">
+            <h2>Iniciar Sesión</h2>
+            <form action="http://ws.mybizum.com:8080/com/ws.php" method="GET">
+                <input type="hidden" name="action" value="login">
+                <input type="text" name="username" placeholder="Usuario" required>
+                <input type="password" name="password" placeholder="Contraseña" required">
+  
+                <button type="submit">Ingresar</button>
+            </form>
+            <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
+        </div>
+</body>
+</html>
