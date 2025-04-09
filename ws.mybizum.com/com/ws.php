@@ -9,25 +9,39 @@ require_once 'utils/dbo/daoCommand.php';
 // require_once 'utils/mail_sender.php';
 require_once 'security/clsUserManager.php';
 require_once 'utils/dbo/daoManager.php';
+require_once 'blockchain/clsBlock.php';
+require_once 'blockchain/clsBlockchain.php';
+require_once 'blockchain/clsTransaction.php';
 
 // Crear una instancia de DBCommand POR NOEL PRO PLAYER LOLAZOXD124
+function newDBCommand($server, $db, $user, $password)
+{
+    $connection = new DBConnection($server, $db, $user, $password);
+    $pdoObject = $connection->getPDOObject();
+    return new DBCommand($pdoObject);
 
-// //Conexion sql pol
-$connection = new DBConnection('172.17.0.2,1433', 'PP_DDBB', 'sa', 'Password2!');
+}
+function connUser()
+{
+    $dbCommand = newDBCommand('172.17.0.2,1433', 'PP_DDBB', 'sa', 'Password2!');
+    $userManager = new UserManager($dbCommand);
+    return $userManager;
+}
 
-//Conexion sql pau
-// $connection = new DBConnection(' 172.17.0.3,1433', 'PP_DDBB', 'sa', 'P@ssw0rd');
+function connDBManager()
+{
+    $dbCommand = newDBCommand('172.17.0.2,1433', 'PP_DDBB', 'sa', 'Password2!');
+    $dbManager = new DBManager($dbCommand);
+    return $dbManager;
+}
 
-$pdoObject = $connection->getPDOObject();
-
-// Crear una instancia de DBCommand pasando el objeto PDO
-$dbCommand = new DBCommand($pdoObject);
-
-// $dbCommand = new DBCommand($pdoObject);
-
-// Crear instancias de los gestores de usuario y base de datos
-$userManager = new UserManager($dbCommand);
-$dbManager = new DBManager($dbCommand);
+// function connBlockChain()
+// {
+//     $connection = new DBConnection('172.17.0.2,1433', 'BlockchainDB', 'sa', 'Password2!');
+//     $pdoObject = $connection->getPDOObject();
+//     $dbCommand = new DBCommand($pdoObject);
+//     return $dbCommand;
+// }
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
@@ -35,10 +49,11 @@ if (empty($action)) {
     echo "Accion no especificada.";
 } else {
     switch ($action) {
-        case "register": // AÑADIR PARAMETROS FALTANTES
-            $userManager->register($_GET['username'], $_GET['name'], $_GET['lastname'], $_GET['password'], $_GET['email'], strtoupper($_GET['gender']), strtoupper($_GET['def_lang']));
-            break;
-        case "register2":
+        // case "register": // AÑADIR PARAMETROS FALTANTES
+
+        //     $userManager->register($_GET['username'], $_GET['name'], $_GET['lastname'], $_GET['password'], $_GET['email'], strtoupper($_GET['gender']), strtoupper($_GET['def_lang']));
+        //     break;
+        case "register":
             $username = $_GET['username'];
             $name = $_GET['name'];
             $lastname = $_GET['lastname'];
@@ -46,34 +61,48 @@ if (empty($action)) {
             $email = $_GET['email'];
             $gender = strtoupper($_GET['gender']);
             $def_lang = strtoupper($_GET['def_lang']);
+            $userManager = connUser();
             $userManager->register($username, $name, $lastname, $password, $email, $gender, $def_lang);
             break;
         case "login":
+            $userManager = connUser();
             $userManager->login($_GET['username'], hash('MD5', $_GET['password']));
             break;
         case "logout":
+            $userManager = connUser();
             $userManager->logout();
             break;
         case "changepass":
+            $userManager = connUser();
             $userManager->changePassword($_GET['username'], $_GET['password'], $_GET['newpassword']);
             break;
         case "viewcon":
+            $dbManager = connDBManager();
             $dbManager->viewConnections();
             break;
         case "viewconhist":
+            $dbManager = connDBManager();
             $dbManager->viewHistoricConnections();
             break;
         case "accvalidate":
+            $userManager = connUser();
             $userManager->accountValidate($_GET['username'], $_GET['code']);
             break;
         case "listusers":
+            $userManager = connUser();
             $userManager->listusers($_GET['ssid']);
             break;
         case "checkpwd":
+            $userManager = connUser();
             $userManager->checkpwd($_GET['pwd']);
             break;
-        case "add":
-            $userManager->add_transaction($_GET['sender'], $_GET['receiver'], $_GET['amount']);
+        case "addTransaction":
+            $dbCommand = newDBCommand('172.17.0.2,1433', 'BlockchainDB', 'sa', 'Password2!');
+            $myBlockchain = new Blockchain();
+            $tx = new Transaction($_GET['sender'], $_GET['receiver'], $_GET['amount']);
+            $block2 = new Block(($myBlockchain->getLatestBlock())->index + 1, date("Y-m-d H:i:s"), [$tx]);
+            $myBlockchain->addBlock($block2);
+            $myBlockchain->save();
             break;
         default:
             echo "Acción no válida.";
