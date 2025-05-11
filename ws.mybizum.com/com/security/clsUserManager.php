@@ -18,32 +18,32 @@ class UserManager
         } else {
             try {
                 $result = $this->dbCommand->execute('sp_user_register', array($username, $name, $lastname, $password, $email, $gender, $def_lang));
+                $xml = simplexml_load_string($result);
+                if ($xml->head->errors->error->num_error == "0") {
+                    $register_code = $this->dbCommand->execute('sp_wdev_get_registercode', array($username, 0));
 
-                $register_code = $this->dbCommand->execute('sp_wdev_get_registercode', array($username, 0));
+                    // URL del Web App desplegado en Google Apps Script
+                    //url pau
+                    // $url = 'https://script.google.com/macros/s/AKfycbzs-WaweIA_cKNVVgqqPmianx7dn4wPI7AflDvM78iUcP8pUoYNh5u5Dg7nBlkofdKu/exec';
 
-                // URL del Web App desplegado en Google Apps Script
-                //url pau
-                // $url = 'https://script.google.com/macros/s/AKfycbzs-WaweIA_cKNVVgqqPmianx7dn4wPI7AflDvM78iUcP8pUoYNh5u5Dg7nBlkofdKu/exec';
+                    //url Pol
+                    $url = 'https://script.google.com/macros/s/AKfycbxAQsgiFCg31C-G1MzD27GjZTo0Owa22XBoGJQzu2AT-WV8lWj76kud2WOuxLaxpH6OYw/exec';
 
-                //url Pol
-                $url = 'https://script.google.com/macros/s/AKfycbxAQsgiFCg31C-G1MzD27GjZTo0Owa22XBoGJQzu2AT-WV8lWj76kud2WOuxLaxpH6OYw/exec';
+                    // Parámetros del correo electrónico
+                    $destinatario = $email;
+                    $asunto = 'Código de registro.';
+                    $cuerpo = $name . ', su código de verificación es ' . $register_code;
+                    $adjunto = null;
 
-                // Parámetros del correo electrónico
-                $destinatario = $email;
-                $asunto = 'Código de registro.';
-                $cuerpo = $name . ', su código de verificación es ' . $register_code;
-                $adjunto = null;
-
-                // Llamada a la función para enviar el correo
-                #$resultado = enviarCorreo($url, $destinatario, $asunto, $cuerpo, $adjunto);
-                // $resultado2 = readAndRegisterUsers($url);
-
+                    // Llamada a la función para enviar el correo
+                    enviarCorreo($url, $destinatario, $asunto, $cuerpo, $adjunto);
+                }
                 // Establecer el encabezado para XML
                 header('Content-Type: text/xml');
 
                 // Mostrar la respuesta XML
                 echo $result;
-                // echo $resultado2;
+
             } catch (PDOException $e) {
                 echo 'Error: ' . $e->getMessage();
             }
@@ -56,46 +56,23 @@ class UserManager
             echo "Todos los campos son obligatorios.";
         } else {
             try {
-                if (isset($_SESSION['username'])) {
-                    $result = new SimpleXMLElement("<Errors><Error><StatusCode>412</StatusCode><Message>Hay un usuario ya conectado</Message></Error></Errors>");
-
-                    // Establecer el encabezado para XML
-                    header('Content-Type: text/xml');
-
-                    // Mostrar la respuesta XML
-                    echo $result->asXML();
-                } else {
-                    $result = $this->dbCommand->execute('sp_user_login', array($username, $password));
-
-                    $_SESSION['username'] = $username;
-
-                    // Establecer el encabezado para XML
-                    header('Content-Type: text/xml');
-
-                    // Mostrar la respuesta XML
-                    echo $result;
-                }
+                $result = $this->dbCommand->execute('sp_user_login', array($username, $password));
+                $xml = simplexml_load_string($result);
+                header('Content-Type: text/xml');
+                echo $xml->asXML();
             } catch (PDOException $e) {
                 echo 'Error: ' . $e->getMessage();
             }
         }
     }
 
-    public function logout()
+    public function logout($username)
     {
         try {
-            // session_destroy();
-            if (isset($_SESSION['username'])) {
-                $username = $_SESSION['username'];
-                $result = $this->dbCommand->execute('sp_user_logout', array($username));
-                session_destroy();
-
-                // Establecer el encabezado para XML
-                header('Content-Type: text/xml');
-
-                // Mostrar la respuesta XML
-                echo $result;
-            }
+            $result = $this->dbCommand->execute('sp_user_logout', array($username));
+            $xml = simplexml_load_string($result);
+            header('Content-Type: text/xml');
+            echo $xml->asXML();
         } catch (PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }

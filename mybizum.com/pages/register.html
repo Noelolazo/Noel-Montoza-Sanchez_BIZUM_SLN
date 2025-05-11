@@ -8,24 +8,23 @@
     <link rel="stylesheet" href="/css/styles.css">
     <script src="/js/clsAjax_v02.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/register.js"></script>
 </head>
-
 <body>
     <header>
-        <div class="logo">Bizum</div>
-        <div class="auth-buttons">
-            <a href="/index.html">Inicio</a>
-        </div>
+        <div class="logo"></div>
+        <div class="auth-buttons"></div>
     </header>
     <div class="container">
         <h2>Registro</h2>
-        <form action="http://ws.mybizum.com:8080/com/ws.php" method="GET">
+        
+        <form id="registerForm">
             <input type="hidden" name="action" value="register">
             <input type="text" name="username" placeholder="Usuario" required>
             <input type="text" name="name" placeholder="Nombre" required>
             <input type="text" name="lastname" placeholder="Apellido" required>
-            <input type="password" name="newpassword" id="newpassword" placeholder="Contraseña" required
-                onkeyup="validatePassword(document.getElementById('newpassword').value)">
+            <input type="password" name="password" id="password" placeholder="Contraseña" required
+                onkeyup="validatePassword(document.getElementById('password').value)">
             <span id="passwordMessage"></span>
             <input type="email" name="email" placeholder="Correo Electrónico" required>
             <select name="gender">
@@ -39,8 +38,9 @@
                 <option value="FRA">Francés</option>
             </select>
             <button type="submit">Registrarse</button>
+            <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
         </form>
-        <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+        <div id="login-message"></div>
     </div>
 </body>
 

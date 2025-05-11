@@ -2,17 +2,127 @@
   "ftp://noel@localhost": {
     "html": {},
     "mybizum.com": {},
+    "mychain.com": {},
     "ws.mybizum.com": {},
     "var": {
       "www": {
+        "html": {},
         "mybizum.com": {
           "css": {
             "styles.css": {
               "type": "-",
-              "size": 1661,
-              "lmtime": 1742736698205.0547,
+              "size": 1654,
+              "lmtime": 1746706028235.125,
               "modified": false
             }
+          },
+          "index.html": {
+            "type": "-",
+            "size": 860,
+            "lmtime": 1746704811240.2449,
+            "modified": false
+          },
+          "index.php": {
+            "type": "-",
+            "size": 20,
+            "lmtime": 0,
+            "modified": false
+          },
+          "js": {
+            "clsAjax_v02.js": {
+              "type": "-",
+              "size": 1487,
+              "lmtime": 0,
+              "modified": false
+            },
+            "login.js": {
+              "type": "-",
+              "size": 2231,
+              "lmtime": 1746704897444.9043,
+              "modified": false
+            },
+            "main.js": {
+              "type": "-",
+              "size": 3332,
+              "lmtime": 1746705993986.9294,
+              "modified": false
+            },
+            "script.js": {
+              "type": "-",
+              "size": 980,
+              "lmtime": 0,
+              "modified": false
+            }
+          },
+          "pages": {
+            "error.html": {
+              "type": "-",
+              "size": 741,
+              "lmtime": 0,
+              "modified": false
+            },
+            "login.html": {
+              "type": "-",
+              "size": 1055,
+              "lmtime": 1746703389208.377,
+              "modified": false
+            },
+            "recover.html": {
+              "type": "-",
+              "size": 0,
+              "lmtime": 0,
+              "modified": false
+            },
+            "register.html": {
+              "type": "-",
+              "size": 1893,
+              "lmtime": 0,
+              "modified": false
+            },
+            "send.html": {
+              "type": "-",
+              "size": 1221,
+              "lmtime": 0,
+              "modified": false
+            }
+          },
+          "rscs": {
+            "imgs": {
+              "logo.png": {
+                "type": "-",
+                "size": 7557,
+                "lmtime": 1746705514633.332,
+                "modified": false
+              }
+            }
+          }
+        },
+        "mychain.com": {},
+        "ws.mybizum.com": {
+          "com": {
+            "bizum": {},
+            "blockchain": {},
+            "security": {
+              "clsUserManager.php": {
+                "type": "-",
+                "size": 7322,
+                "lmtime": 1746703696197.054,
+                "modified": false
+              }
+            },
+            "utils": {},
+            "ws.php": {
+              "type": "-",
+              "size": 6397,
+              "lmtime": 1746703765088.9968,
+              "modified": false
+            }
+          },
+          "index.html": {
+            "type": "-",
+            "size": 371,
+            "lmtime": 0,
+            "modified": false
           }
         }
       }

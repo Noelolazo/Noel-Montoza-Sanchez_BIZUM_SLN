@@ -1,12 +1,14 @@
 <?php
+ob_clean();
 header("Access-Control-Allow-Origin: *");
-
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
 session_start();
 
 require_once 'utils/dbo/daoConnection.php';
 require_once 'utils/dbo/daoCommand.php';
-// require_once 'utils/mail_sender.php';
+require_once 'utils/mailtools/mail_sender.php';
 require_once 'security/clsUserManager.php';
 require_once 'utils/dbo/daoManager.php';
 require_once 'blockchain/clsBlock.php';
@@ -24,15 +26,13 @@ function newDBCommand($server, $db, $user, $password)
 function connUser()
 {
     $dbCommand = newDBCommand('172.17.0.2,1433', 'PP_DDBB', 'sa', 'Password2!');
-    $userManager = new UserManager($dbCommand);
-    return $userManager;
+    return new UserManager($dbCommand);
 }
 
 function connDBManager()
 {
     $dbCommand = newDBCommand('172.17.0.2,1433', 'PP_DDBB', 'sa', 'Password2!');
-    $dbManager = new DBManager($dbCommand);
-    return $dbManager;
+    return new DBManager($dbCommand);
 }
 
 // function connBlockChain()
@@ -57,7 +57,7 @@ if (empty($action)) {
             $username = $_GET['username'];
             $name = $_GET['name'];
             $lastname = $_GET['lastname'];
-            $password = $_GET['newpassword'];
+            $password = $_GET['password'];
             $email = $_GET['email'];
             $gender = strtoupper($_GET['gender']);
             $def_lang = strtoupper($_GET['def_lang']);
@@ -70,7 +70,7 @@ if (empty($action)) {
             break;
         case "logout":
             $userManager = connUser();
-            $userManager->logout();
+            $userManager->logout($_GET['username']);
             break;
         case "changepass":
             $userManager = connUser();

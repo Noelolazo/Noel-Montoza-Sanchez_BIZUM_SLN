@@ -13,9 +13,9 @@ header {
     align-items: center;
     padding: 15px 20px;
 }
-.logo {
-    font-size: 24px;
-    font-weight: bold;
+.logo-img {
+    height: 25%;
+    width: 25%;
 }
 .auth-buttons a {
     color: white;

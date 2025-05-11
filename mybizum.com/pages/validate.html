@@ -6,26 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificar usuario</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <script src="/js/clsAjax_v02.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/validate.js"></script>
 </head>
 
 <body>
     <header>
         <div class="logo">Bizum</div>
-        <div class="auth-buttons">
-            <a href="/index.html">Inicio</a>
-        </div>
+        <div class="auth-buttons"></div>
     </header>
     <div class="container">
-        <h2>Iniciar Sesión</h2>
-        <form action="http://ws.mybizum.com:8080/com/ws.php" method="GET">
-            <input type="hidden" name="action" value="login">
+        <h2>Verificar cuenta</h2>
+        <form id="validateForm">
+            <input type="hidden" name="action" value="accvalidate">
             <input type="text" name="username" placeholder="Usuario" required>
-            <input type="password" name="password" placeholder="Contraseña" required">
-
+            <input type="text" name="code" placeholder="Código" required>
             <button type="submit">Ingresar</button>
         </form>
-        <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
+        <!-- <div id="validate-message"></div> -->
     </div>
 </body>
 
