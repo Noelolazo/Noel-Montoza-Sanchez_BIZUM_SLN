@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [PP_DDBB]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  Database [PP_DDBB]    Script Date: 12/05/2025 1:10:32 ******/
 CREATE DATABASE [PP_DDBB]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -84,7 +84,7 @@ ALTER DATABASE [PP_DDBB] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_P
 GO
 USE [PP_DDBB]
 GO
-/****** Object:  UserDefinedFunction [dbo].[fn_analyze_sql_inyection]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_analyze_sql_inyection]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -106,7 +106,7 @@ BEGIN
     RETURN @IsValid;
 END;
 GO
-/****** Object:  UserDefinedFunction [dbo].[fn_compare_passwords]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_compare_passwords]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -145,7 +145,7 @@ BEGIN
     RETURN -1;
 END;
 GO
-/****** Object:  UserDefinedFunction [dbo].[fn_compare_soundex]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_compare_soundex]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -190,7 +190,7 @@ BEGIN
     RETURN @RESULT;
 END;
 GO
-/****** Object:  UserDefinedFunction [dbo].[fn_generate_ssid]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_generate_ssid]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -207,7 +207,7 @@ BEGIN
     return @ssid
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[fn_mail_exists]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_mail_exists]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -223,7 +223,7 @@ BEGIN
     RETURN @Exists;
 END;
 GO
-/****** Object:  UserDefinedFunction [dbo].[fn_mail_isvalid]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_mail_isvalid]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -251,7 +251,7 @@ BEGIN
     RETURN @ValidEmail;
 END;
 GO
-/****** Object:  UserDefinedFunction [dbo].[fn_pwd_checkpolicy]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_pwd_checkpolicy]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -290,7 +290,7 @@ BEGIN
     RETURN @errorPass;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[fn_pwd_isvalid]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_pwd_isvalid]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -315,7 +315,7 @@ BEGIN
     RETURN @IsValid;
 END;
 GO
-/****** Object:  UserDefinedFunction [dbo].[fn_user_exists]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_user_exists]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -331,7 +331,7 @@ BEGIN
     RETURN @Exists;
 END;
 GO
-/****** Object:  UserDefinedFunction [dbo].[fn_user_state]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_user_state]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -353,7 +353,7 @@ BEGIN
     RETURN @userState;
 END;
 GO
-/****** Object:  View [dbo].[v_guid]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  View [dbo].[v_guid]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -363,14 +363,13 @@ create view [dbo].[v_guid]
 AS
     select newid() guid
 GO
-/****** Object:  Table [dbo].[BANK_ACCOUNTS]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  Table [dbo].[BANK_ACCOUNTS]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[BANK_ACCOUNTS](
 	[ACCOUNT_ID] [uniqueidentifier] NOT NULL,
-	[USER_ID] [int] NOT NULL,
 	[USERNAME] [nvarchar](25) NOT NULL,
 	[BALANCE] [decimal](18, 2) NULL,
 	[CREATED_AT] [datetime] NULL,
@@ -380,7 +379,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[LANGUAGES]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  Table [dbo].[LANGUAGES]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -394,22 +393,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PASSWORD_RESET_PIN]    Script Date: 28/05/2025 13:51:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[PASSWORD_RESET_PIN](
-	[USER_ID] [int] NOT NULL,
-	[PIN] [char](6) NOT NULL,
-	[CREATED_AT] [datetime] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[USER_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[PWD_HISTORY]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  Table [dbo].[PWD_HISTORY]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -426,7 +410,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[STATUS]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  Table [dbo].[STATUS]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -440,7 +424,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[stored_hash]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  Table [dbo].[stored_hash]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -449,24 +433,7 @@ CREATE TABLE [dbo].[stored_hash](
 	[PASSWORD] [nvarchar](256) NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Transactions]    Script Date: 28/05/2025 13:51:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Transactions](
-	[TransactionID] [int] IDENTITY(1,1) NOT NULL,
-	[SenderID] [int] NOT NULL,
-	[ReceiverID] [int] NOT NULL,
-	[Amount] [decimal](18, 2) NOT NULL,
-	[Timestamp] [datetime] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[TransactionID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[USER_CONNECTIONS]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  Table [dbo].[USER_CONNECTIONS]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -483,7 +450,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[USER_CONNECTIONS_HISTORY]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  Table [dbo].[USER_CONNECTIONS_HISTORY]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -500,7 +467,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[USER_ERRORS]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  Table [dbo].[USER_ERRORS]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -515,7 +482,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[USERS]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  Table [dbo].[USERS]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -537,88 +504,10 @@ CREATE TABLE [dbo].[USERS](
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
-UNIQUE NONCLUSTERED 
-(
-	[USERNAME] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-SET IDENTITY_INSERT [dbo].[USER_ERRORS] ON 
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (-1, N'Error indefinido')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (0, N'¡El proceso a sido un éxito!')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (100, N'Usuario desconectado y registrado en el historial correctamente.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (402, N'La nueva contraseña no puede ser igual a la última contraseña.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (403, N'La nueva contraseña no puede sonar igual a las 3 últimas contraseñas.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (405, N'La conexión especificada no existe.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (408, N'El correo electrónico ya está registrado')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (409, N'El usuario ya existe')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (410, N'Género no valido.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (411, N'Idioma no valido.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (423, N'La cuenta del usuario está inactiva o bloqueada.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (450, N'El correo electrónico no cumple los requisitos')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (451, N'La contraseña no cumple los requisitos')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (500, N'El usuario se esta desconectando.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (501, N'El nombre de usuario no existe.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (502, N'La contraseña es incorrecta.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (503, N'La contraseña debe contener más de 10 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (504, N'No se encontraron conexiones activas.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (505, N'No se encontró historial de conexiones.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (506, N'No se encontraron usuarios con estado definido.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (507, N'No se encontró historial de conexiones para el usuario.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (508, N'No se encontraron errores.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (509, N'El email no esta registrado en la base de datos.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (600, N'Fondos insuficientes')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (700, N'El usuario especificado no existe.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (701, N'La cuenta del usuario ya está activada.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (702, N'El código de registro proporcionado no es válido.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (703, N'No se pudo actualizar el estado del usuario.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (704, N'Este email no tiene solicitud de restablecimiento de contraseña.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (705, N'PIN de restablecimiento de contraseña incorrecto.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (800, N'No tienes permisos de administrador.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (900, N'Usuario receptor no existe.')
-GO
-INSERT [dbo].[USER_ERRORS] ([ERROR_CODE], [ERROR_MESSAGE]) VALUES (901, N'No puedes enviarte un bizum a ti mismo.')
-GO
-SET IDENTITY_INSERT [dbo].[USER_ERRORS] OFF
-GO
-INSERT [dbo].[STATUS] ([STATUS], [DESCRIPTION]) VALUES (0, N'Pendiente')
-GO
-INSERT [dbo].[STATUS] ([STATUS], [DESCRIPTION]) VALUES (1, N'Activo')
-GO
-INSERT [dbo].[STATUS] ([STATUS], [DESCRIPTION]) VALUES (2, N'Bloqueado')
+INSERT [dbo].[BANK_ACCOUNTS] ([ACCOUNT_ID], [USERNAME], [BALANCE], [CREATED_AT]) VALUES (N'e7215467-0885-4de0-bf8f-6dbf8b05acd0', N'noel', CAST(100.00 AS Decimal(18, 2)), CAST(N'2025-05-12T01:00:30.313' AS DateTime))
 GO
 INSERT [dbo].[LANGUAGES] ([DEF_LANG], [LanguageName]) VALUES (N'ARA', N'Arabic')
 GO
@@ -640,17 +529,101 @@ INSERT [dbo].[LANGUAGES] ([DEF_LANG], [LanguageName]) VALUES (N'POR', N'Portugue
 GO
 INSERT [dbo].[LANGUAGES] ([DEF_LANG], [LanguageName]) VALUES (N'RUS', N'Russian')
 GO
+INSERT [dbo].[STATUS] ([STATUS], [DESCRIPTION]) VALUES (0, N'Pendiente')
+GO
+INSERT [dbo].[STATUS] ([STATUS], [DESCRIPTION]) VALUES (1, N'Activo')
+GO
+INSERT [dbo].[STATUS] ([STATUS], [DESCRIPTION]) VALUES (2, N'Bloqueado')
+GO
+INSERT [dbo].[stored_hash] ([PASSWORD]) VALUES (N'$2y$10$WU0B3/hOBpUsLKP.sERc3.e7UsQyaUHjW1n6gdPvjfA')
+GO
+SET IDENTITY_INSERT [dbo].[USER_CONNECTIONS_HISTORY] ON 
+GO
+INSERT [dbo].[USER_CONNECTIONS_HISTORY] ([HISTORY_ID], [USER_ID], [USERNAME], [DATE_CONNECTED], [DATE_DISCONNECTED]) VALUES (2, 16, N'noel', CAST(N'2025-05-12T00:00:50.433' AS DateTime), CAST(N'2025-05-12T01:00:59.707' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[USER_CONNECTIONS_HISTORY] OFF
+GO
+SET IDENTITY_INSERT [dbo].[USER_ERRORS] ON 
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2025, -1, N'Error indefinido')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2026, 0, N'¡El proceso a sido un éxito!')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2027, 100, N'Usuario desconectado y registrado en el historial correctamente.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2028, 402, N'La nueva contraseña no puede ser igual a la última contraseña.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2029, 403, N'La nueva contraseña no puede sonar igual a las 3 últimas contraseñas.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2030, 405, N'La conexión especificada no existe.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2031, 408, N'El correo electrónico ya está registrado')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2032, 409, N'El usuario ya existe')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2033, 410, N'Género no valido.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2034, 411, N'Idioma no valido.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2035, 412, N'Hay un usuario ya conectado')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2036, 423, N'La cuenta del usuario está inactiva o bloqueada.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2037, 450, N'El correo electrónico no cumple los requisitos')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2038, 451, N'La contraseña no cumple los requisitos')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2039, 500, N'El usuario se esta desconectando.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2040, 501, N'El nombre de usuario no existe.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2041, 502, N'La contraseña es incorrecta.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2042, 503, N'La contraseña debe contener más de 10 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2043, 504, N'No se encontraron conexiones activas.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2044, 505, N'No se encontró historial de conexiones.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2045, 506, N'No se encontraron usuarios con estado definido.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2046, 507, N'No se encontró historial de conexiones para el usuario.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2047, 508, N'No se encontraron errores.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2048, 700, N'El usuario especificado no existe.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2049, 701, N'La cuenta del usuario ya está activada.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2050, 702, N'El código de registro proporcionado no es válido.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2051, 703, N'No se pudo actualizar el estado del usuario.')
+GO
+INSERT [dbo].[USER_ERRORS] ([ERROR_ID], [ERROR_CODE], [ERROR_MESSAGE]) VALUES (2052, 800, N'No tienes permisos de administrador.')
+GO
+SET IDENTITY_INSERT [dbo].[USER_ERRORS] OFF
+GO
+SET IDENTITY_INSERT [dbo].[USERS] ON 
+GO
+INSERT [dbo].[USERS] ([ID], [USERNAME], [NAME], [LASTNAME], [PASSWORD], [EMAIL], [STATUS], [GENDER], [DEF_LANG], [TIMESTAMP], [REGISTER_CODE], [LOGIN_STATUS], [ROL_USER]) VALUES (16, N'noel', N'noel', N'montoza', N'bc1c2f470e631e8b4bab033469cf2bd9', N'nojarmonsa9@gmail.com', 1, N'M', N'ESP', CAST(N'2025-05-12T01:00:30.267' AS DateTime), 51669, 0, 0)
+GO
+SET IDENTITY_INSERT [dbo].[USERS] OFF
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__USERS__B15BE12E86265BBF]    Script Date: 12/05/2025 1:10:32 ******/
+ALTER TABLE [dbo].[USERS] ADD UNIQUE NONCLUSTERED 
+(
+	[USERNAME] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
 ALTER TABLE [dbo].[BANK_ACCOUNTS] ADD  DEFAULT (newid()) FOR [ACCOUNT_ID]
 GO
 ALTER TABLE [dbo].[BANK_ACCOUNTS] ADD  DEFAULT ((0)) FOR [BALANCE]
 GO
 ALTER TABLE [dbo].[BANK_ACCOUNTS] ADD  DEFAULT (CONVERT([datetime],switchoffset(sysdatetimeoffset(),'+02:00'))) FOR [CREATED_AT]
 GO
-ALTER TABLE [dbo].[PASSWORD_RESET_PIN] ADD  DEFAULT (CONVERT([datetime],switchoffset(sysdatetimeoffset(),'+02:00'))) FOR [CREATED_AT]
-GO
 ALTER TABLE [dbo].[PWD_HISTORY] ADD  DEFAULT (CONVERT([datetime],switchoffset(sysdatetimeoffset(),'+02:00'))) FOR [DATE_CHANGED]
-GO
-ALTER TABLE [dbo].[Transactions] ADD  DEFAULT (CONVERT([datetime],switchoffset(sysdatetimeoffset(),'+02:00'))) FOR [Timestamp]
 GO
 ALTER TABLE [dbo].[USER_CONNECTIONS] ADD  DEFAULT (CONVERT([datetime],switchoffset(sysdatetimeoffset(),'+02:00'))) FOR [DATE_CONNECTED]
 GO
@@ -660,27 +633,11 @@ ALTER TABLE [dbo].[USER_CONNECTIONS_HISTORY] ADD  DEFAULT (CONVERT([datetime],sw
 GO
 ALTER TABLE [dbo].[USERS] ADD  DEFAULT (CONVERT([datetime],switchoffset(sysdatetimeoffset(),'+02:00'))) FOR [TIMESTAMP]
 GO
-ALTER TABLE [dbo].[BANK_ACCOUNTS]  WITH CHECK ADD FOREIGN KEY([USER_ID])
-REFERENCES [dbo].[USERS] ([ID])
-GO
 ALTER TABLE [dbo].[BANK_ACCOUNTS]  WITH CHECK ADD FOREIGN KEY([USERNAME])
 REFERENCES [dbo].[USERS] ([USERNAME])
 GO
-ALTER TABLE [dbo].[PASSWORD_RESET_PIN]  WITH CHECK ADD FOREIGN KEY([USER_ID])
-REFERENCES [dbo].[USERS] ([ID])
-GO
 ALTER TABLE [dbo].[PWD_HISTORY]  WITH CHECK ADD FOREIGN KEY([USER_ID])
 REFERENCES [dbo].[USERS] ([ID])
-GO
-ALTER TABLE [dbo].[Transactions]  WITH CHECK ADD  CONSTRAINT [FK_Transactions_Receiver] FOREIGN KEY([ReceiverID])
-REFERENCES [dbo].[USERS] ([ID])
-GO
-ALTER TABLE [dbo].[Transactions] CHECK CONSTRAINT [FK_Transactions_Receiver]
-GO
-ALTER TABLE [dbo].[Transactions]  WITH CHECK ADD  CONSTRAINT [FK_Transactions_Sender] FOREIGN KEY([SenderID])
-REFERENCES [dbo].[USERS] ([ID])
-GO
-ALTER TABLE [dbo].[Transactions] CHECK CONSTRAINT [FK_Transactions_Sender]
 GO
 ALTER TABLE [dbo].[USER_CONNECTIONS]  WITH CHECK ADD FOREIGN KEY([USER_ID])
 REFERENCES [dbo].[USERS] ([ID])
@@ -694,7 +651,7 @@ GO
 ALTER TABLE [dbo].[USERS]  WITH CHECK ADD FOREIGN KEY([STATUS])
 REFERENCES [dbo].[STATUS] ([STATUS])
 GO
-/****** Object:  StoredProcedure [dbo].[getPasswordHash]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[getPasswordHash]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -715,7 +672,7 @@ BEGIN
         SELECT 'USER_NOT_FOUND' AS hashed_password;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_check_pwd]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_check_pwd]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -773,7 +730,7 @@ BEGIN
 
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_list_connections]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_list_connections]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -816,7 +773,7 @@ BEGIN
         SELECT @XMLFlag;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_list_errors]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_list_errors]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -858,7 +815,7 @@ BEGIN
         SELECT @XMLFlag;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_list_historic_connections]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_list_historic_connections]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -900,7 +857,7 @@ BEGIN
         SELECT @XMLFlag;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_list_system_status]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_list_system_status]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -947,7 +904,7 @@ BEGIN
         SELECT @XMLFlag;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_list_users]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_list_users]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -989,7 +946,7 @@ BEGIN
         SELECT @XMLFlag;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_list_users2]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_list_users2]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -1051,308 +1008,7 @@ BEGIN
         SELECT @XMLFlag;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_uc_check_balance]    Script Date: 28/05/2025 13:51:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[sp_uc_check_balance] 
-    @SSID NVARCHAR(255)
-AS
-BEGIN
-    DECLARE @ret INT = -1;
-    DECLARE @USER_ID INT;
-    DECLARE @DATE_CONNECTED DATETIME;
-    DECLARE @BALANCE DECIMAL(18, 2);
-	DECLARE @BALANCE_XML XML;
-
-    EXEC sp_wdev_check_user_connection 
-        @SSID = @SSID,
-        @USER_ID = @USER_ID OUTPUT,
-        @DATE_CONNECTED = @DATE_CONNECTED OUTPUT,
-        @ret = @ret OUTPUT;
-
-    IF @ret <> 100
-    BEGIN
-        SET @ret = 405; -- Conexión no válida
-        GOTO ExitProc;
-    END
-	ELSE
-	BEGIN
-		SELECT @BALANCE = BALANCE FROM BANK_ACCOUNTS WHERE USER_ID = @USER_ID;
-		SET @ret = 0;
-	END
-
-	ExitProc:
-    DECLARE @ResponseXML XML, @Connection_ID_XML XML;
-    EXEC sp_xml_error_message @RETURN = @ret, @XmlResponse = @ResponseXML OUTPUT, @Action = 'check_balance';
-	SET @Balance_XML = (
-		SELECT @BALANCE FOR XML PATH('BALANCE')
-	);
-	SET @ResponseXML = (
-		SELECT @ResponseXML, @Balance_XML
-		FOR XML PATH ('root')
-	);
-    SELECT @ResponseXML;
-END;
-GO
-/****** Object:  StoredProcedure [dbo].[sp_uc_check_username]    Script Date: 28/05/2025 13:51:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[sp_uc_check_username] 
-    @SSID NVARCHAR(255),
-	@RECEIVER NVARCHAR(50)
-AS
-BEGIN
-    DECLARE @SENDER_ID INT;
-	DECLARE @RECEIVER_ID INT;
-
-	SET @RECEIVER = @RECEIVER COLLATE Latin1_General_CS_AS;
-	SET @SENDER_ID = (SELECT USER_ID FROM USER_CONNECTIONS WHERE CONNECTION_ID = @SSID);
-	
-	IF EXISTS (SELECT 1 FROM USERS WHERE USERNAME=@RECEIVER)
-    BEGIN
-		SET @RECEIVER_ID = (SELECT ID FROM USERS WHERE USERNAME=@RECEIVER);
-		IF @RECEIVER_ID = @SENDER_ID
-		BEGIN
-			SELECT 2;
-		END
-		ELSE
-		BEGIN
-			SELECT 1;
-		END
-	END
-	ELSE
-	BEGIN
-		SELECT 0;
-	END
-END;
-GO
-/****** Object:  StoredProcedure [dbo].[sp_uc_get_last_user_transaction]    Script Date: 28/05/2025 13:51:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE PROCEDURE [dbo].[sp_uc_get_last_user_transaction]
-    @SSID NVARCHAR(255)
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    DECLARE @USER_ID INT;
-    DECLARE @DATE_CONNECTED DATETIME;
-    DECLARE @ret INT = -1;
-
-    -- Verificar la conexión y obtener USER_ID
-    EXEC sp_wdev_check_user_connection
-        @SSID = @SSID,
-        @USER_ID = @USER_ID OUTPUT,
-        @DATE_CONNECTED = @DATE_CONNECTED OUTPUT,
-        @ret = @ret OUTPUT;
-
-    IF @ret <> 100
-    BEGIN
-        -- Error de sesión
-        DECLARE @XmlError XML;
-        EXEC sp_xml_error_message @RETURN = @ret, @XmlResponse = @XmlError OUTPUT, @Action = 'get_last_transaction';
-        SELECT @XmlError;
-        RETURN;
-    END
-
-    -- Verificar si hay transacciones
-    IF NOT EXISTS (
-        SELECT 1 FROM Transactions
-        WHERE SenderID = @USER_ID OR ReceiverID = @USER_ID
-    )
-    BEGIN
-        -- No hay transacciones
-        SELECT
-            'No transaction found' AS [Message],
-            @USER_ID AS [UserID]
-        FOR XML PATH('NoTransaction'), ROOT('LastTransaction');
-        RETURN;
-    END
-
-    -- Obtener la transacción más reciente con usernames
-    SELECT TOP 1
-        T.TransactionID,
-        SU.USERNAME AS Sender,
-        RU.USERNAME AS Receiver,
-        T.Amount,
-        T.Timestamp
-    FROM Transactions T
-    INNER JOIN USERS SU ON T.SenderID = SU.ID
-    INNER JOIN USERS RU ON T.ReceiverID = RU.ID
-    WHERE T.SenderID = @USER_ID OR T.ReceiverID = @USER_ID
-    ORDER BY T.Timestamp DESC
-    FOR XML PATH('Transaction'), ROOT('LastTransaction');
-END;
-GO
-/****** Object:  StoredProcedure [dbo].[sp_uc_get_user_transactions]    Script Date: 28/05/2025 13:51:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[sp_uc_get_user_transactions]
-    @SSID NVARCHAR(255)
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    DECLARE @USER_ID INT;
-    DECLARE @DATE_CONNECTED DATETIME;
-    DECLARE @ret INT = -1;
-
-    -- Verificar la conexión y obtener USER_ID
-    EXEC sp_wdev_check_user_connection
-        @SSID = @SSID,
-        @USER_ID = @USER_ID OUTPUT,
-        @DATE_CONNECTED = @DATE_CONNECTED OUTPUT,
-        @ret = @ret OUTPUT;
-
-    IF @ret <> 100
-    BEGIN
-        -- Error de sesión
-        DECLARE @XmlError XML;
-        EXEC sp_xml_error_message @RETURN = @ret, @XmlResponse = @XmlError OUTPUT, @Action = 'get_last_transaction';
-        SELECT @XmlError;
-        RETURN;
-    END
-
-    -- Verificar si hay transacciones
-    IF NOT EXISTS (
-        SELECT 1 FROM Transactions
-        WHERE SenderID = @USER_ID OR ReceiverID = @USER_ID
-    )
-    BEGIN
-        -- No hay transacciones
-        SELECT
-            'No transaction found' AS [Message],
-            @USER_ID AS [UserID]
-        FOR XML PATH('NoTransaction'), ROOT('LastTransaction');
-        RETURN;
-    END
-
-    -- Obtener la transacción más reciente con usernames
-	DECLARE @XmlString NVARCHAR(MAX);
-
-	SELECT @XmlString = CAST((
-		SELECT T.TransactionID,
-			SU.USERNAME AS Sender,
-			RU.USERNAME AS Receiver,
-			T.Amount,
-			T.Timestamp
-		FROM Transactions T
-		INNER JOIN USERS SU ON T.SenderID = SU.ID
-		INNER JOIN USERS RU ON T.ReceiverID = RU.ID
-		WHERE T.SenderID = @USER_ID OR T.ReceiverID = @USER_ID
-		ORDER BY T.Timestamp DESC
-		FOR XML PATH('Transaction'), ROOT('Transactions')
-	) AS NVARCHAR(MAX));
-
-	SELECT @XmlString;
-END;
-GO
-/****** Object:  StoredProcedure [dbo].[sp_uc_send_bizum]    Script Date: 28/05/2025 13:51:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[sp_uc_send_bizum]
-    @SSID NVARCHAR(255),
-    @RECEIVER_USERNAME NVARCHAR(25),
-    @AMOUNT DECIMAL(18, 2)
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    DECLARE @ret INT = -1;
-    DECLARE @SENDER_ID INT;
-    DECLARE @RECEIVER_ID INT;
-    DECLARE @SENDER_USERNAME NVARCHAR(25);
-    DECLARE @DATE_CONNECTED DATETIME;
-    DECLARE @SENDER_BALANCE DECIMAL(18, 2);
-	DECLARE @TransactionID INT;
-
-    -- Paso 1: Verificar la conexión mediante la procedure centralizada
-    EXEC sp_wdev_check_user_connection 
-        @SSID = @SSID,
-        @USER_ID = @SENDER_ID OUTPUT,
-        @DATE_CONNECTED = @DATE_CONNECTED OUTPUT,
-        @ret = @ret OUTPUT;
-
-    IF @ret <> 100
-    BEGIN
-        SET @ret = 405; -- Conexión no válida
-        GOTO ExitProc;
-    END
-	ELSE
-	BEGIN
-		-- Paso 2: Verificar que el receptor exista o que sea el mismo
-		SELECT @RECEIVER_ID = ID FROM USERS WHERE USERNAME = @RECEIVER_USERNAME;
-
-		IF @RECEIVER_ID IS NULL
-		BEGIN
-			SET @ret = 900; -- Usuario receptor no existe
-			GOTO ExitProc;
-		END
-		ELSE IF @SENDER_ID = @RECEIVER_ID
-		BEGIN
-			SET @ret = 901;
-			GOTO ExitProc;
-		END
-		ELSE
-		BEGIN
-			-- Paso 3: Verificar fondos suficientes
-			SELECT @SENDER_BALANCE = BALANCE FROM BANK_ACCOUNTS WHERE USER_ID = @SENDER_ID;
-
-			IF @SENDER_BALANCE IS NULL OR @SENDER_BALANCE < @AMOUNT
-			BEGIN
-				SET @ret = 600; -- Fondos insuficientes
-				GOTO ExitProc;
-			END
-			ELSE
-			BEGIN
-
-				-- Paso 4: Realizar la transacción
-				INSERT INTO Transactions (SenderID, ReceiverID, Amount)
-				VALUES (@SENDER_ID, @RECEIVER_ID, @AMOUNT);
-
-				SET @TransactionID = SCOPE_IDENTITY();
-
-				-- Paso 5: Actualizar saldos
-				UPDATE BANK_ACCOUNTS
-				SET BALANCE = BALANCE - @AMOUNT
-				WHERE USER_ID = @SENDER_ID;
-
-				UPDATE BANK_ACCOUNTS
-				SET BALANCE = BALANCE + @AMOUNT
-				WHERE USER_ID = @RECEIVER_ID;
-
-				    -- Paso 6: Generar bloque para blockchain
-				EXEC BlockchainDB.dbo.sp_blockchain_add_block 
-					@TransactionID = @TransactionID,
-					@SenderID = @SENDER_ID,
-					@ReceiverID = @RECEIVER_ID,
-					@Amount = @AMOUNT,
-					@ret = @ret OUTPUT;
-
-				SET @ret = 0;
-			END
-		END
-	END
-
-ExitProc:
-    DECLARE @ResponseXML XML;
-    EXEC sp_xml_error_message @RETURN = @ret, @XmlResponse = @ResponseXML OUTPUT, @Action = 'send_bizum';
-    SELECT @ResponseXML;
-END;
-
-GO
-/****** Object:  StoredProcedure [dbo].[sp_user_accountvalidate]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_accountvalidate]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -1417,7 +1073,7 @@ ExitProc:
     SELECT @ResponseXML;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_change_password]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_change_password]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -1425,19 +1081,17 @@ GO
 
 -- sp_user_change_password
 CREATE   PROCEDURE [dbo].[sp_user_change_password]
-    @SSID NVARCHAR(255), 
+    @USERNAME NVARCHAR(50), 
     @CURRENT_PASSWORD NVARCHAR(256), 
     @NEW_PASSWORD NVARCHAR(256)
 AS
 BEGIN
     SET NOCOUNT ON;
-
-	DECLARE @USERNAME NVARCHAR(50);
+    
     DECLARE @ret INT;
     SET @ret = -1;
 
-	SET @USERNAME = (SELECT USERNAME FROM USERS WHERE ID = (
-						SELECT USER_ID FROM USER_CONNECTIONS WHERE CONNECTION_ID = @SSID));
+    DECLARE @XMLFlag XML;
 
     -- Verifica que la contraseÃ±a actual sea vÃ¡lida
     IF (dbo.fn_pwd_isvalid(@CURRENT_PASSWORD, @USERNAME) = 0)
@@ -1472,11 +1126,11 @@ BEGIN
 
     ExitProc:
     DECLARE @ResponseXML XML;
-    EXEC sp_xml_error_message @RETURN = @ret, @XmlResponse = @ResponseXML OUTPUT, @Action = "change_password";
+    EXEC sp_xml_error_message @RETURN = @ret, @XmlResponse = @ResponseXML OUTPUT;
     SELECT @ResponseXML;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_get_accountdata]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_get_accountdata]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -1504,7 +1158,7 @@ BEGIN
         SELECT @XMLFlag;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_login]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_login]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -1581,20 +1235,19 @@ BEGIN
     SELECT @ResponseXML;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_logout]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_logout]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
 
 CREATE   PROCEDURE [dbo].[sp_user_logout]
-    @SSID NVARCHAR(255) 
+    @USERNAME NVARCHAR(25) 
 AS
 BEGIN
     SET NOCOUNT ON;
     
     DECLARE @ret INT;
-	DECLARE @USERNAME NVARCHAR(25);
     DECLARE @USER_ID INT;
     DECLARE @DATE_CONNECTED DATETIME;
     DECLARE @DATE_DISCONNECTED DATETIME;
@@ -1602,11 +1255,10 @@ BEGIN
     SET @DATE_DISCONNECTED = SYSDATETIMEOFFSET() AT TIME ZONE 'Central European Standard Time';
 
     -- Comprueba si el usuario estÃ¡ conectado
-    EXEC sp_wdev_check_user_connection @SSID, @USER_ID OUTPUT, @DATE_CONNECTED OUTPUT, @ret OUTPUT;
+    EXEC sp_wdev_check_user_connection @USERNAME, @USER_ID OUTPUT, @DATE_CONNECTED OUTPUT, @ret OUTPUT;
 
     IF @ret = 100
     BEGIN
-		SET @USERNAME = (SELECT USERNAME FROM USERS WHERE ID = @USER_ID);
         -- Insertar en USER_CONNECTIONS_HISTORY antes de eliminar
         EXEC sp_wdev_insert_user_connection_history 
             @USER_ID, 
@@ -1616,7 +1268,7 @@ BEGIN
 
 
         -- Eliminar de USER_CONNECTIONS
-        DELETE FROM USER_CONNECTIONS WHERE CONNECTION_ID = @SSID;
+        DELETE FROM USER_CONNECTIONS WHERE USERNAME = @USERNAME;
 
         IF @@ROWCOUNT = 1
         BEGIN
@@ -1632,7 +1284,7 @@ BEGIN
     SELECT @ResponseXML;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_register]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_register]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -1653,91 +1305,80 @@ BEGIN
 
     DECLARE @ret INT;
 	DECLARE @result BIT;
-	DECLARE @USER_ID INT;
     SET @ret = -1;
 
-	-- Verificar SQL Inyection
-	IF (dbo.fn_analyze_sql_inyection(@PASSWORD) = 0)
-	BEGIN
-		SET @ret = 69;
-		GOTO ExitProc;
-	END
-	ELSE
-	BEGIN
-		-- Verificar si el usuario ya existe
-		IF dbo.fn_user_exists(@USERNAME) = 1
-		BEGIN
-			SET @ret = 409;
-			GOTO ExitProc;
-		END
-		ELSE
-		BEGIN
-			-- Verificar si el correo electrÃ³nico ya estÃ¡ registrado
-			IF dbo.fn_mail_exists(@EMAIL) = 1
-			BEGIN
-				SET @ret = 408;
-				GOTO ExitProc;
-			END
-			ELSE
-			BEGIN
-				-- Verificar si el correo electrÃ³nico es vÃ¡lido
-				IF dbo.fn_mail_isvalid(@EMAIL) = 0
-				BEGIN
-					SET @ret = 450;
-					GOTO ExitProc;
-				END
-				ELSE
-				BEGIN
-					-- Verificar la polÃ­tica de contraseÃ±a
-					IF dbo.fn_pwd_checkpolicy(@PASSWORD) = 0
+    -- Verificar si el usuario ya existe
+    IF dbo.fn_user_exists(@USERNAME) = 1
+    BEGIN
+        SET @ret = 409;
+        GOTO ExitProc;
+    END
+    ELSE
+    BEGIN
+        -- Verificar si el correo electrÃ³nico ya estÃ¡ registrado
+        IF dbo.fn_mail_exists(@EMAIL) = 1
+        BEGIN
+            SET @ret = 408;
+            GOTO ExitProc;
+        END
+        ELSE
+        BEGIN
+            -- Verificar si el correo electrÃ³nico es vÃ¡lido
+            IF dbo.fn_mail_isvalid(@EMAIL) = 0
+            BEGIN
+                SET @ret = 450;
+                GOTO ExitProc;
+            END
+            ELSE
+            BEGIN
+                -- Verificar la polÃ­tica de contraseÃ±a
+                IF dbo.fn_pwd_checkpolicy(@PASSWORD) = 0
+                BEGIN
+                    SET @ret = 451;
+                    GOTO ExitProc;
+                END
+                ELSE
+                BEGIN
+					-- Verificar el genero
+					IF @GENDER NOT IN ('M', 'F', 'O')
 					BEGIN
-						SET @ret = 451;
+						SET @ret = 410;
 						GOTO ExitProc;
 					END
 					ELSE
 					BEGIN
-						-- Verificar el genero
-						IF @GENDER NOT IN ('M', 'F', 'O')
-						BEGIN
-							SET @ret = 410;
-							GOTO ExitProc;
-						END
-						ELSE
-						BEGIN
-							-- Verificar el idioma por defecto
-							IF NOT EXISTS (SELECT 1 FROM LANGUAGES WHERE DEF_LANG = @DEF_LANG)
-							BEGIN
-								SET @ret = 411;
-								GOTO ExitProc;
-							END
-							ELSE
-							BEGIN
-								-- Insertar el nuevo usuario si todas las validaciones son exitosas
-								EXEC @ret = sp_wdev_user_insert @USERNAME, @NAME, @LASTNAME, @PASSWORD, @EMAIL, @GENDER, @DEF_LANG;
+                        -- Verificar el idioma por defecto
+                        IF NOT EXISTS (SELECT 1 FROM LANGUAGES WHERE DEF_LANG = @DEF_LANG)
+                        BEGIN
+                            SET @ret = 411;
+                            GOTO ExitProc;
+                        END
+                        ELSE
+                        BEGIN
+							-- Insertar el nuevo usuario si todas las validaciones son exitosas
+							EXEC @ret = sp_wdev_user_insert @USERNAME, @NAME, @LASTNAME, @PASSWORD, @EMAIL, @GENDER, @DEF_LANG;
 
-								IF @@ROWCOUNT > 0
+							IF @@ROWCOUNT > 0
+							BEGIN
+								-- Crear cuenta bancaria 
+								EXEC @result = dbo.sp_wdev_create_account @USERNAME, 100;
+								IF (@result = 1)
 								BEGIN
-									-- Crear cuenta bancaria 
-									SET @USER_ID = (SELECT ID FROM USERS WHERE USERNAME = @USERNAME);
-									EXEC @result = dbo.sp_wdev_create_account @USER_ID, @USERNAME, 100;
-									IF (@result = 1)
-									BEGIN
-										SET @ret = 0;  
-										GOTO ExitProc;
-									END
-									ELSE
-									BEGIN
-										SET @ret = -1  
-										GOTO ExitProc;
-									END
+									SET @ret = 0;  
+									GOTO ExitProc;
+								END
+								ELSE
+								BEGIN
+									SET @ret = -1  
+									GOTO ExitProc;
 								END
 							END
 						END
 					END
-				END
-			END
-		END
-	END
+                END
+            END
+        END
+    END
 
     ExitProc:
     DECLARE @ResponseXML XML;
@@ -1745,13 +1386,13 @@ BEGIN
     SELECT @ResponseXML;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_check_user_connection]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_wdev_check_user_connection]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
 CREATE   PROCEDURE [dbo].[sp_wdev_check_user_connection]
-    @SSID NVARCHAR(255),
+    @USERNAME NVARCHAR(25),
     @USER_ID INT OUTPUT,
     @DATE_CONNECTED DATETIME OUTPUT,
     @ret INT OUTPUT
@@ -1763,7 +1404,7 @@ BEGIN
 
     -- Comprueba si el usuario estÃ¡ conectado
     IF EXISTS (
-        SELECT 1 FROM USER_CONNECTIONS WHERE CAST(CONNECTION_ID AS NVARCHAR(255)) = @SSID
+        SELECT 1 FROM USER_CONNECTIONS WHERE USERNAME = @USERNAME
     )
     BEGIN
         -- ObtÃ©n la informaciÃ³n de la conexiÃ³n
@@ -1771,7 +1412,7 @@ BEGIN
             @USER_ID = USER_ID, 
             @DATE_CONNECTED = DATE_CONNECTED 
         FROM USER_CONNECTIONS 
-        WHERE CAST(CONNECTION_ID AS NVARCHAR(255)) = @SSID;
+        WHERE USERNAME = @USERNAME;
 
         SET @ret = 100; -- Ã‰xito
     END
@@ -1781,13 +1422,12 @@ BEGIN
     END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_create_account]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_wdev_create_account]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[sp_wdev_create_account]
-	@USER_ID INT,
     @USERNAME NVARCHAR(25),
     @INITIAL_BALANCE DECIMAL(18,2) = 0
 AS
@@ -1795,8 +1435,8 @@ BEGIN
     SET NOCOUNT ON;
 
     -- Crear la cuenta
-    INSERT INTO BANK_ACCOUNTS (USER_ID, USERNAME, BALANCE, CREATED_AT)
-    VALUES (@USER_ID, @USERNAME, @INITIAL_BALANCE, SWITCHOFFSET(SYSDATETIMEOFFSET(), '+02:00'));
+    INSERT INTO BANK_ACCOUNTS (USERNAME, BALANCE, CREATED_AT)
+    VALUES (@USERNAME, @INITIAL_BALANCE, SWITCHOFFSET(SYSDATETIMEOFFSET(), '+02:00'));
 
     IF @@ROWCOUNT > 0
         RETURN 1; -- OK
@@ -1804,7 +1444,7 @@ BEGIN
         RETURN 0;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_deletealldata]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_wdev_deletealldata]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -1825,7 +1465,7 @@ BEGIN
     
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_get_registercode]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_wdev_get_registercode]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -1878,7 +1518,7 @@ END;
 
 -- EXEC sp_get_registercode @USERNAME="pauallende04",@REGISTER_CODE=0
 GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_insert_user_connection_history]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_wdev_insert_user_connection_history]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -1896,162 +1536,7 @@ BEGIN
     VALUES (@USER_ID, @USERNAME, @DATE_CONNECTED, @DATE_DISCONNECTED);
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_recover_password_email]    Script Date: 28/05/2025 13:51:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[sp_wdev_recover_password_email]
-    @EMAIL NVARCHAR(25)
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-	DECLARE @XML_RESPONSE XML;
-    DECLARE @USER_ID INT;
-    DECLARE @USERNAME NVARCHAR(25);
-	DECLARE @RECOVERY_CODE INT;
-	DECLARE @ret INT;
-    SET @ret = -1;
-
-    -- Verificar si el usuario existe
-    IF (dbo.fn_mail_exists(@EMAIL) = 0)
-    BEGIN
-        SET @ret = 509;
-        GOTO ExitProc;
-    END
-    ELSE
-    BEGIN
-		SET @RECOVERY_CODE = CAST((RAND() * 90000) + 10000 AS INT);
-		SET @USER_ID = (SELECT ID FROM USERS WHERE EMAIL = @EMAIL);
-		SET @USERNAME = (SELECT USERNAME FROM USERS WHERE EMAIL = @EMAIL);
-
-		-- Insertar el PIN de recuperación
-		IF NOT EXISTS (
-			SELECT 1 FROM PASSWORD_RESET_PIN
-			WHERE USER_ID = @USER_ID
-		)
-		BEGIN
-			-- No hay transacciones
-			INSERT INTO PASSWORD_RESET_PIN (USER_ID, PIN) VALUES (@USER_ID, @RECOVERY_CODE);
-			SET @ret = 0;
-		END
-		ELSE
-		BEGIN
-			UPDATE PASSWORD_RESET_PIN SET PIN = @RECOVERY_CODE WHERE USER_ID = @USER_ID;
-			SET @ret = 0;
-		END
-	END
-
-	ExitProc:
-    DECLARE @ResponseXML XML, @USERNAME_XML XML, @RECOVERY_CODE_XML XML;
-    EXEC sp_xml_error_message @RETURN = @ret, @XmlResponse = @ResponseXML OUTPUT, @Action = 'recover_password_email';
-	SET @USERNAME_XML = (
-		SELECT @USERNAME FOR XML PATH('USERNAME')
-	);
-	SET @RECOVERY_CODE_XML = (
-		SELECT @RECOVERY_CODE FOR XML PATH('RECOVERY_CODE')
-	);
-	SET @ResponseXML = (
-		SELECT @ResponseXML, @USERNAME_XML, @RECOVERY_CODE_XML
-		FOR XML PATH ('root')
-	);
-    SELECT @ResponseXML;
-END;
-GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_recover_password_pin]    Script Date: 28/05/2025 13:51:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[sp_wdev_recover_password_pin]
-    @EMAIL NVARCHAR(25),
-	@PIN INT,
-	@NEW_PASSWORD NVARCHAR(256)
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-	DECLARE @XML_RESPONSE XML;
-    DECLARE @USER_ID INT;
-	DECLARE @USERNAME NVARCHAR(25);
-	DECLARE @CURRENT_PASSWORD NVARCHAR(256);
-	DECLARE @HPASSWORD NVARCHAR(256);
-	DECLARE @ret INT;
-    SET @ret = -1;
-
-	-- Verificar SQL Inyection
-	IF (dbo.fn_analyze_sql_inyection(@NEW_PASSWORD) = 0)
-	BEGIN
-		SET @ret = 69;
-		GOTO ExitProc;
-	END
-	ELSE
-	BEGIN
-		-- Verificar si el usuario existe
-		IF (dbo.fn_mail_exists(@EMAIL) = 0)
-		BEGIN
-			SET @ret = 509;
-			GOTO ExitProc;
-		END
-		ELSE
-		BEGIN
-			SET @USER_ID = (SELECT ID FROM USERS WHERE EMAIL = @EMAIL);
-			SET @USERNAME = (SELECT USERNAME FROM USERS WHERE EMAIL = @EMAIL);
-
-			-- Insertar el PIN de recuperación
-			IF NOT EXISTS (
-				SELECT 1 FROM PASSWORD_RESET_PIN WHERE USER_ID = @USER_ID
-			)
-			BEGIN
-				SET @ret = 704;
-				GOTO ExitProc;
-			END
-			ELSE
-			BEGIN
-				IF @PIN != (SELECT PIN FROM PASSWORD_RESET_PIN WHERE USER_ID = @USER_ID)
-				BEGIN
-					SET @ret = 705;
-					GOTO ExitProc;
-				END
-				ELSE
-				BEGIN
-					SET @HPASSWORD = LOWER(CONVERT(VARCHAR(256), HASHBYTES('MD5', CAST(@NEW_PASSWORD AS VARCHAR(256))), 2));
-					-- Verifica que la nueva contraseÃ±a cumpla con la polÃ­tica
-					IF dbo.fn_pwd_checkpolicy(@NEW_PASSWORD) = 0
-					BEGIN
-						SET @ret = 503;
-						GOTO ExitProc;
-					END
-
-					-- Verificar si la nueva contraseÃ±a es igual a alguna de las tres Ãºltimas contraseÃ±as
-					IF dbo.fn_compare_soundex(@USERNAME, @HPASSWORD) = 0
-					BEGIN
-						SET @ret = 402;
-						GOTO ExitProc;
-					END
-
-					IF dbo.fn_compare_passwords(@HPASSWORD, @USERNAME) = 1
-					BEGIN
-						SET @ret = 402;
-						GOTO ExitProc;
-					END
-					
-					SET @CURRENT_PASSWORD = (SELECT PASSWORD FROM USERS WHERE ID = @USER_ID);
-					EXEC sp_wdev_user_update_password_info @USERNAME, @CURRENT_PASSWORD, @HPASSWORD, @ret OUTPUT;
-					DELETE FROM PASSWORD_RESET_PIN WHERE USER_ID = @USER_ID;
-				END
-			END
-		END
-	END
-
-	ExitProc:
-    DECLARE @ResponseXML XML, @USERNAME_XML XML, @RECOVERY_CODE_XML XML;
-    EXEC sp_xml_error_message @RETURN = @ret, @XmlResponse = @ResponseXML OUTPUT, @Action = 'recover_password_pin';
-    SELECT @ResponseXML;
-END;
-GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_update_user_login_status_0]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_wdev_update_user_login_status_0]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -2064,7 +1549,7 @@ BEGIN
     UPDATE USERS SET LOGIN_STATUS = 0 WHERE USERNAME = @USERNAME;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_user_check_existence]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_wdev_user_check_existence]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -2095,7 +1580,7 @@ BEGIN
     END
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_user_create_user_connection]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_wdev_user_create_user_connection]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -2126,7 +1611,7 @@ BEGIN
     END
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_user_get_login_status]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_wdev_user_get_login_status]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -2154,7 +1639,7 @@ BEGIN
     END
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_user_insert]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_wdev_user_insert]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -2186,7 +1671,7 @@ DECLARE @REGISTER_CODE INT;
 
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_wdev_user_update_password_info]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_wdev_user_update_password_info]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -2220,7 +1705,7 @@ BEGIN
         @USER_ID,
         @USERNAME, 
         @CURRENT_PASSWORD, 
-        CONVERT([datetime],switchoffset(sysdatetimeoffset(),'+02:00')) -- fecha de cambio de contraseÃ±a
+        SYSDATETIMEOFFSET() AT TIME ZONE 'Central European Standard Time' -- fecha de cambio de contraseÃ±a
     );
 
     -- Actualizar la contraseÃ±a del usuario
@@ -2231,7 +1716,7 @@ BEGIN
     SET @ret = 0;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_xml_error_message]    Script Date: 28/05/2025 13:51:03 ******/
+/****** Object:  StoredProcedure [dbo].[sp_xml_error_message]    Script Date: 12/05/2025 1:10:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

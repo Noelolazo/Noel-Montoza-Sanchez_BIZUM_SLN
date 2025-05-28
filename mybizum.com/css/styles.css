@@ -29,6 +29,16 @@ header {
     background-color: white;
     color: #00a2e1;
 }
+.containerTransaction {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
 .container {
     max-width: 400px;
     margin: 50px auto;
@@ -75,6 +85,11 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+.sendButton {
+    width: 50%;
+    background-color: #28a745;
+}
+
 .text-link {
     margin-top: 10px;
     font-size: 14px;
@@ -85,4 +100,41 @@ button:hover {
 }
 .text-link a:hover {
     text-decoration: underline;
+}
+
+.transactionTable {
+    width: 100%;
+    border-collapse: collapse; /* para bordes unidos */
+    font-size: 16px;
+    color: #333;
+    margin-top: 20px;
+    border: 2px solid #00a2e1; /* borde principal de la tabla */
+    /* border-radius: 8px; */
+    overflow: hidden; /* para que el border-radius funcione en tablas */
+}
+
+.transactionTable thead tr {
+    background-color: #00a2e1;
+    color: white;
+    text-align: center;
+}
+
+.transactionTable thead th {
+    padding: 12px 15px;
+    font-weight: 600;
+    border: 1px solid #0077bf; /* borde entre celdas en encabezado */
+}
+
+.transactionTable tbody tr {
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.transactionTable tbody tr:hover {
+    background-color: #e6f4fb;
+}
+
+.transactionTable tbody td {
+    padding: 12px 15px;
+    border: 1px solid #ddd; /* borde entre celdas */
 }

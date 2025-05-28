@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +9,48 @@
     <script src="js/clsAjax_v02.js"></script>
     <script src="js/main.js"></script>
 </head>
+
 <body>
     <header>
         <div class="logo">Bizum</div>
         <div class="auth-buttons">
         </div>
     </header>
-    <div class="container">
+    <div class="containerTransaction">
         <div class="content">
             <h2>Bienvenido a Bizum</h2>
-            <p>Inicie sesión para poder acceder a las funciones.</p>
+            <div class="fondos">
+                <h3>Fondos actuales: </h3> 
+                <h3 id="balance">0.00 €</h3>
+            </div>
+            <div class="last-transaction">
+                <h3>Última transacción: </h3>
+                <table class="transactionTable">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Remitente</th>
+                            <th>Destinatario</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionBody">
+                        <tr>
+                            <td id="transactionDate"></td>
+                            <td id="transactionSender"></td>
+                            <td id="transactionReceiver"></td>
+                            <td id="transactionAmount"></td>
+                        </tr>
+                        <!-- Las transacciones se cargarán aquí -->
+                    </tbody>
+                </table>
+            </div>
             <div class="options">
-                <a href="pages/send.html"><button>Enviar dinero</button></a>
+                <a href="pages/send.html"><button class="sendButton">Enviar dinero</button></a>
+                <a href="pages/list.html"><button class="sendButton">Listar transacciones</button></a>
             </div>
         </div>
     </div>
 </body>
+
 </html>

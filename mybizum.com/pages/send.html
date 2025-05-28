@@ -5,21 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blockchain</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.js"></script> -->
-    <!-- <script src="main.js"></script> -->
+    <script src="/js/clsAjax_v02.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/send.js"></script>
 </head>
 <body>
     <header>
-        <div class="logo"></div>
-        <div class="auth-buttons"></div>
+        <div class="logo">Bizum</div>
+        <div class="auth-buttons">
+        </div>
     </header>
     <div class="container">
         <div class="form-container" id="add_transaction">
             <h2>Hacer transacción</h2>
-            <form action="http://ws.mybizum.com:8080/com/ws.php" method="GET">
+            <form id="sendBizumForm">
                 <input type="hidden" name="action" value="addTransaction">
-                <input type="text" name="sender" placeholder="remitente" required>
-                <input type="text" name="receiver" placeholder="destinatario" required>
+                <input type="text" name="receiver" id="receiver" placeholder="destinatario" required
+                    onkeyup="validateUsername(document.getElementById('receiver').value)">
+                <span id="receiverMessage"></span>
                 <input type="number" name="amount" placeholder="cantidad" required">
                 <button type="submit">Ingresar</button>
             </form>

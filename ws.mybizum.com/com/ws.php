@@ -1,19 +1,22 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 ob_clean();
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
-
-session_start();
 
 require_once 'utils/dbo/daoConnection.php';
 require_once 'utils/dbo/daoCommand.php';
 require_once 'utils/mailtools/mail_sender.php';
 require_once 'security/clsUserManager.php';
 require_once 'utils/dbo/daoManager.php';
-require_once 'blockchain/clsBlock.php';
-require_once 'blockchain/clsBlockchain.php';
+// require_once 'blockchain/clsBlock.php';
+// require_once 'blockchain/clsBlockchain.php';
 require_once 'blockchain/clsTransaction.php';
+require_once 'bizum/clsBizum.php';
 
 // Crear una instancia de DBCommand POR NOEL PRO PLAYER LOLAZOXD124
 function newDBCommand($server, $db, $user, $password)
@@ -35,6 +38,11 @@ function connDBManager()
     return new DBManager($dbCommand);
 }
 
+function connBizum()
+{
+    $dbCommand = newDBCommand('172.17.0.2,1433', 'PP_DDBB', 'sa', 'Password2!');
+    return new Bizum($dbCommand);
+}
 // function connBlockChain()
 // {
 //     $connection = new DBConnection('172.17.0.2,1433', 'BlockchainDB', 'sa', 'Password2!');
@@ -70,11 +78,19 @@ if (empty($action)) {
             break;
         case "logout":
             $userManager = connUser();
-            $userManager->logout($_GET['username']);
+            $userManager->logout($_GET['ssid']);
+            break;
+        case "recoverypassEmail":
+            $userManager = connUser();
+            $userManager->recoverPasswordEmail($_GET['email']);
+            break;
+        case "recoverypassPIN":
+            $userManager = connUser();
+            $userManager->recoverPasswordPIN($_GET['email'], $_GET['pin'], $_GET['password']);
             break;
         case "changepass":
             $userManager = connUser();
-            $userManager->changePassword($_GET['username'], $_GET['password'], $_GET['newpassword']);
+            $userManager->changePassword($_GET['ssid'], hash('MD5', $_GET['password']), $_GET['newpassword']);
             break;
         case "viewcon":
             $dbManager = connDBManager();
@@ -96,13 +112,32 @@ if (empty($action)) {
             $userManager = connUser();
             $userManager->checkpwd($_GET['pwd']);
             break;
+        case "checkuser":
+            $bizum = connBizum();
+            $bizum->checkuser($_GET['ssid'], $_GET['username']);
+            break;
+        case "checkbalance":
+            $bizum = connBizum();
+            $bizum->checkbalance($_GET['ssid']);
+            break;
+        case "checklasttransaction":
+            $bizum = connBizum();
+            $bizum->checkLastTransaction($_GET['ssid']);
+            break;
+        case "getTransactions":
+            $bizum = connBizum();
+            $bizum->getTransactions($_GET['ssid']);
+            break;
         case "addTransaction":
-            $dbCommand = newDBCommand('172.17.0.2,1433', 'BlockchainDB', 'sa', 'Password2!');
-            $myBlockchain = new Blockchain();
-            $tx = new Transaction($_GET['sender'], $_GET['receiver'], $_GET['amount']);
-            $block2 = new Block(($myBlockchain->getLatestBlock())->index + 1, date("Y-m-d H:i:s"), [$tx]);
-            $myBlockchain->addBlock($block2);
-            $myBlockchain->save();
+            $bizum = connBizum();
+            $bizum->sendBizum($_GET['ssid'], $_GET['receiver'], $_GET['amount']);
+
+            // $dbCommand = newDBCommand('172.17.0.2,1433', 'BlockchainDB', 'sa', 'Password2!');
+            // $myBlockchain = new Blockchain();
+            // $tx = new Transaction($_GET['sender'], $_GET['receiver'], $_GET['amount']);
+            // $block2 = new Block(($myBlockchain->getLatestBlock())->index + 1, date("Y-m-d H:i:s"), [$tx]);
+            // $myBlockchain->addBlock($block2);
+            // $myBlockchain->save();
             break;
         default:
             echo "Acción no válida.";

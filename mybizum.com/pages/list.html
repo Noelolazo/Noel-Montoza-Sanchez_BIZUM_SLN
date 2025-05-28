@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/clsAjax_v02.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/list.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Bizum</div>
+        <div class="auth-buttons">
+        </div>
+    </header>
+    <div class="containerTransaction">
+        <div class="content">
+            <h2>Lista de transacciones</h2>
+            <table class="transactionTable">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Remitente</th>
+                        <th>Destinatario</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionBody">
+                    <tr>
+                        <td id="transactionDate"></td>
+                        <td id="transactionSender"></td>
+                        <td id="transactionReceiver"></td>
+                        <td id="transactionAmount"></td>
+                    </tr>
+                    <!-- Las transacciones se cargarán aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

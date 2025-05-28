@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
             // const ssid = xmlDoc.querySelector("CONNECTION_ID")?.textContent;
 
             if (xmlDoc.querySelector("num_error")?.textContent == "0") {
-                document.cookie = `USERNAME=${username}; path=/; max-age=86400; SameSite=Lax`;
                 window.location.href = "/index.html";
             } else {
                 const errorMsg = xmlDoc.querySelector("message_error")?.textContent || "Error desconocido.";
